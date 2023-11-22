@@ -55,7 +55,7 @@ public class SupervisoraDeConexao extends Thread{
         }
 
         //provavelmente fara aqui a parte de pegar o login do usuario
-
+        //preciso que alguem de um olhada em como tratar o variavel que vamos utilziar (senha);
         try
         {
             this.usuario =
