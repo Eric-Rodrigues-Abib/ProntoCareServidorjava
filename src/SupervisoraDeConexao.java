@@ -88,10 +88,10 @@ public class SupervisoraDeConexao extends Thread{
 
                     if(possuiUppercase && possuiCaractereEspecial)
                     {
-                        this.usuario.receba(new RespostaValidaSenha("Senha válida."));
+                        this.usuario.receba(new RespostaSenha("Senha válida."));
                     }else
                     {
-                        this.usuario.receba(new RespostaInvalidaSenha("Senha inválida. Verifique suas credenciais."));
+                        this.usuario.receba(new RespostaSenha("Senha inválida. Verifique suas credenciais."));
                     }
                 }
             }

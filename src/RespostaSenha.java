@@ -1,8 +1,8 @@
-public class RespostaValidaSenha extends Comunicado{
+public class RespostaSenha extends Comunicado{
 
     private String mensagem;
 
-    public RespostaValidaSenha(String mensagem)
+    public RespostaSenha(String mensagem)
     {
         this.mensagem = mensagem;
     }
