@@ -12,6 +12,6 @@ public class RespostaSenha extends Comunicado{
 
     public String toString()
     {
-        return(""+this.mensagem);
+        return(" "+this.mensagem);
     }
 }

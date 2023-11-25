@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 public class SupervisoraDeConexao extends Thread{
+    private String              senha;
     private Parceiro            usuario;
     private Socket              conexao;
     private ArrayList<Parceiro> usuarios;
@@ -78,23 +79,24 @@ public class SupervisoraDeConexao extends Thread{
             else if (comunicado instanceof TratadoraDeLogin)
             {
                 TratadoraDeLogin tratadoraDeLogin = (TratadoraDeLogin) comunicado;
+                //String senhaRecebida = tratadoraDeLogin.getSenha();
+                this.senha = tratadoraDeLogin.getSenha();
+                if (this.senha != null && this.senha.length() >= 8) {
+                    boolean possuiUppercase = !this.senha.equals(this.senha.toLowerCase());
+                    boolean possuiCaractereEspecial = !this.senha.matches("[A-Za-z0-9]*");
 
-                String senhaRecebida = tratadoraDeLogin.getSenha();
-
-                if(senhaRecebida != null && senhaRecebida.length()>=8)
-                {
-                    boolean possuiUppercase = !senhaRecebida.equals(senhaRecebida.toLowerCase());
-                    boolean possuiCaractereEspecial = !senhaRecebida.matches("[A-Za-z0-9]*");
-
-                    if(possuiUppercase && possuiCaractereEspecial)
-                    {
+                    if (possuiUppercase && possuiCaractereEspecial) {
                         this.usuario.receba(new RespostaSenha("Senha válida."));
-                    }else
-                    {
+                    } else {
                         this.usuario.receba(new RespostaSenha("Senha inválida. Verifique suas credenciais."));
                     }
                 }
             }
+            else if (comunicado instanceof RespostaSenha)
+            {
+                this.usuario.receba (new RespostaSenha(" "+this.senha));
+            }
+            //neste case, seria melhor em vez de ter um "RespostaSenha", fazer com que o tratadora de login passe msg tamb?
         }
         catch (Exception erro)
         {
