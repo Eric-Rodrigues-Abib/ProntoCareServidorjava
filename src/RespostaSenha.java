@@ -1,12 +1,12 @@
 public class RespostaSenha extends Comunicado{
 
-    private String mensagem;
+    private Boolean mensagem;
 
-    public RespostaSenha(String mensagem)
+    public RespostaSenha(Boolean mensagem)
     {
         this.mensagem = mensagem;
     }
-    public String getMensagem() {
+    public Boolean getMensagem() {
         return mensagem;
     }
 

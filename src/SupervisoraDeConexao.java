@@ -86,17 +86,12 @@ public class SupervisoraDeConexao extends Thread{
                     boolean possuiCaractereEspecial = !this.senha.matches("[A-Za-z0-9]*");
 
                     if (possuiUppercase && possuiCaractereEspecial) {
-                        this.usuario.receba(new RespostaSenha("Senha válida."));
+                        this.usuario.receba(new RespostaSenha(true));
                     } else {
-                        this.usuario.receba(new RespostaSenha("Senha inválida. Verifique suas credenciais."));
+                        this.usuario.receba(new RespostaSenha(false));
                     }
                 }
             }
-            else if (comunicado instanceof RespostaSenha)
-            {
-                this.usuario.receba (new RespostaSenha(" "+this.senha));
-            }
-            //neste case, seria melhor em vez de ter um "RespostaSenha", fazer com que o tratadora de login passe msg tamb?
         }
         catch (Exception erro)
         {
