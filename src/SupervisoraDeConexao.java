@@ -79,17 +79,12 @@ public class SupervisoraDeConexao extends Thread{
             else if (comunicado instanceof TratadoraDeLogin)
             {
                 TratadoraDeLogin tratadoraDeLogin = (TratadoraDeLogin) comunicado;
-                //String senhaRecebida = tratadoraDeLogin.getSenha();
-                this.senha = tratadoraDeLogin.getSenha();
-                if (this.senha != null && this.senha.length() >= 8) {
-                    boolean possuiUppercase = !this.senha.equals(this.senha.toLowerCase());
-                    boolean possuiCaractereEspecial = !this.senha.matches("[A-Za-z0-9]*");
+                String senhaRecebida = tratadoraDeLogin.getSenha();
 
-                    if (possuiUppercase && possuiCaractereEspecial) {
-                        this.usuario.receba(new RespostaSenha(true));
-                    } else {
-                        this.usuario.receba(new RespostaSenha(false));
-                    }
+                if (senhaRecebida != null && senhaRecebida.length() >= 8) {
+                    this.usuario.receba(new RespostaSenha(true));
+                }else {
+                    this.usuario.receba(new RespostaSenha(false));
                 }
             }
         }
